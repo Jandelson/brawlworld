@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Contracts\BrawlApiInterface;
+use Exception;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class BrawlUnofficialApiService implements BrawlApiInterface
 {
@@ -11,12 +13,18 @@ class BrawlUnofficialApiService implements BrawlApiInterface
 
     public function getData($method = 'brawlers'): array
     {
+        $array = [];
         $this->method = $method;
-        $url = 'https://api.brawlapi.com/v1/' . $this->method;
-        $headers = [];
+        
+        try {
+            $url = env('API_UNOFFICIAL') . $this->method;
+            $headers = [];
 
-        $response = Http::get($url, $headers);
-        $array = json_decode($response->body())->list;
+            $response = Http::get($url, $headers);
+            $array = json_decode($response->body())->list;
+        } catch (\Exception $error) {
+            Log::info('Unofficial:' . $error->getMessage());
+        }
 
         return $array;
     }

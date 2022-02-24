@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\BrawlApiInterface;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class BrawlOfficialApiService implements BrawlApiInterface
 {
@@ -11,21 +12,26 @@ class BrawlOfficialApiService implements BrawlApiInterface
 
     public function getData($method = 'brawlers'): array
     {
+        $array = [];
         $this->method = $method;
-        $url = 'https://api.brawlstars.com/v1/' . $this->method;
+        $url = env('API_OFFICIAL') . $this->method;
 
         $token = env('TOKEN_API_BRAWLSTAR');
 
         $headers = [
-            'Authorization' => 'Bearer ' . $token,        
+            'Authorization' => 'Bearer ' . $token,
             'Accept'        => 'application/json',
         ];
 
         try {
             $response = Http::get($url, $headers);
-            $array = json_decode($response->body())->items;
+            $body = json_decode($response->body());
+            if (isset($body->items)) {
+                Log::info('Official:' . $body->message);
+            }
+            $array = $body->items;
         } catch (\Exception $error) {
-            return [];
+            Log::info('Official:' . $error->getMessage());
         }
         return $array;
     }
