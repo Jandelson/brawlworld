@@ -10,6 +10,7 @@ class BrawlsService
 {
     protected $brawlApiOfficial;
     protected $brawlApiUnofficial;
+    private $fileName = 'braws.json';
 
     public function __construct(
         BrawlOfficialApiService $brawlApiOfficial, 
@@ -25,7 +26,7 @@ class BrawlsService
         $brawlApiUnofficial = $this->brawlApiUnofficial->getData($method);
 
         $brawlsMerge = [];
-        
+
         if (!empty($brawlApiOfficial) and !empty($brawlApiUnofficial)) {
             foreach($brawlApiOfficial as $object) {
                 foreach($brawlApiUnofficial as $object1) {
@@ -47,12 +48,13 @@ class BrawlsService
     {
         if (!empty($array)) {
             $contentJson = json_encode($array, true);
-            Storage::put('braws.json', $contentJson);
+            Storage::put($this->fileName, $contentJson);
         }
     }
 
     private function getFileJson(): array
     {
-        return json_decode(Storage::get('braws.json'), true);
+        $json = Storage::get($this->fileName);
+        return json_decode($json, true);
     }
 }

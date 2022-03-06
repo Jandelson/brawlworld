@@ -14,7 +14,7 @@ class BrawlOfficialApiService implements BrawlApiInterface
     {
         $array = [];
         $this->method = $method;
-        $url = env('API_OFFICIAL') . $this->method;
+        $url = 'https://api.brawlstars.com/v1/' . $this->method;
 
         $token = env('TOKEN_API_BRAWLSTAR');
 
@@ -26,7 +26,7 @@ class BrawlOfficialApiService implements BrawlApiInterface
         try {
             $response = Http::get($url, $headers);
             $body = json_decode($response->body());
-            if (isset($body->items)) {
+            if (!isset($body->items)) {
                 Log::info('Official:' . $body->message);
             }
             $array = $body->items;
