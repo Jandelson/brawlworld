@@ -1,0 +1,149 @@
+body {
+    font-family: 'Fredoka', sans-serif;
+}
+
+hr.sep-3 {
+    border: none;
+    height: 1px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #5e5e5e;
+    opacity: 1;
+    background-image: linear-gradient(to right, #f0f0f0, #8f8f8f, #f0f0f0);
+}
+
+hr.desc {
+    border: none;
+    height: 1px;
+    color: #5e5e5e;
+    opacity: 1;
+    background-image: linear-gradient(to right, #f0f0f0, #8f8f8f, #f0f0f0);
+}
+
+.card.shadow:hover {
+    transform: scale(1.05);
+    transition: 0.4s;
+}
+
+.card.shadow {
+    transform: scale(0.98);
+    transition: 0.2s;
+}
+
+hr.sep-3::after {
+    content: 'Champions';
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    padding: 4px 10px 10px 10px;
+    background-color: #f8fafc;
+}
+
+.brawl-img {
+    width: 250px;
+    align-self: center;
+    border-radius: 100%;
+}
+
+.rary {
+    width: 120px;
+    height: 30px;
+    color: white;
+    margin-left: 20px;
+    border-radius: 30px;
+    background-color: #b9eaff;
+    text-shadow: 0px 2px 6px #3e3e3e;
+    box-shadow: 0px 4px 18px -8px #565656;
+}
+
+.Rare {
+    background-color: #68fd58;
+    color: white;
+}
+
+.Super {
+    background-color: #5ab3ff;
+    color: white;
+}
+
+.Epic {
+    background-color: #d850ff;
+    color: white;
+}
+
+.Mythic {
+    background: linear-gradient(136deg, #ffc2c9, #fd9aa5, #fe5e72);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    color: white;
+    transform: scale(1);
+}
+
+.Legendary {
+    background: linear-gradient(131deg, #e3f082, #fff89a, #fff11e);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 1.5s ease infinite;
+    -moz-animation: AnimationName 1.5s ease infinite;
+    animation: AnimationName 1.5s ease infinite;
+    color: white;
+    transform: scale(1);
+}
+
+.Chromatic {
+    background: linear-gradient(131deg, #f4e8dc, #f7be84, #f88f25);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 1s ease infinite;
+    -moz-animation: AnimationName 1s ease infinite;
+    animation: AnimationName 1s ease infinite;
+    color: white;
+    transform: scale(1);
+}
+
+
+/** Bricando com CSs*/
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0% 22%
+    }
+    50% {
+        background-position: 100% 79%
+    }
+    100% {
+        background-position: 0% 22%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0% 22%
+    }
+    50% {
+        background-position: 100% 79%
+    }
+    100% {
+        background-position: 0% 22%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+        background-position: 0% 22%
+    }
+    50% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        background-position: 100% 79%
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        background-position: 0% 22%
+    }
+}
