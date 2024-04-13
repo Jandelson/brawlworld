@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: php81fpm
+    container_name: brawlworld
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - brawl
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-brawlworld
+    restart: always
+    volumes:
+      - ./:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8000:80"
+    networks:
+      - brawl
+
+networks:
+  brawl:
+    driver: bridge
+    name: brawl
